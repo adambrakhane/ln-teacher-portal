@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Adam Brakhane">
+    <title>Litnerd - Login</title>
+
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        
+        #loginFail {
+            display: none;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+    <main class="form-signin">
+        <form>
+            <img class="mb-4" src="https://litnerd.com/wp-content/uploads/2021/06/litnerd-logo.png" alt="" width="200">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+            <div class="alert alert-warning" id="loginFail">User ID or password incorrect</div>
+
+            <div class="form-floating">
+                <input type="number" class="form-control" id="userid" placeholder="135">
+                <label for="userid">User ID</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Password">
+                <label for="password">Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="alert alert-info">ID: 135, Password: test</div>
+        </form>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Catch form submit
+            $(".form-signin").submit(function(e) {
+                e.preventDefault()
+
+                // Clear errors
+                $("#loginFail").hide()
+
+                var userID = parseInt($("#userid").val())
+                var password = $("#password").val()
+
+                // Attempt login
+                jQuery.ajax({
+                        url: "/login",
+                        type: "POST",
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8",
+                        },
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            "id": userID,
+                            "password": password
+                        })
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        // 200 response, so we're in!
+                        console.log("HTTP Request Succeeded: " + jqXHR.status);
+                        console.log(data);
+
+                        // Store token in browser
+                        data = JSON.parse(data)
+                        localStorage.setItem("token", data.token)
+                            // and get to work
+                        window.location = "/"
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("HTTP Request Failed");
+                        console.log(textStatus)
+                        $("#loginFail").show()
+                    })
+                    .always(function() {
+                        /* could show loading bar here or something */
+                    });
+                return false
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>
