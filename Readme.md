@@ -1,7 +1,7 @@
 # Teacher Portal
 
 ## What I built
-Anisa gave me a 4 hour time limit so I hade to decide how to best use the time. Instead of building a small/simple application that was complete, I decided to demonsterate the breadth of what I can build. I think that should give you a better idea of what I would build if I had 9am-5pm every weekday.
+Anisa gave me a 4-5 hour time limit so I hade to decide how to best use the time. Instead of building a small/simple application that was complete, I decided to demonsterate the breadth of what I can build. I think that should give you a better idea of what I would build if I had 9am-5pm every weekday.
 
 ### What exists
 - Teacher login works
