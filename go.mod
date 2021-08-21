@@ -1,8 +1,8 @@
 module github.com/adambrakhane/ln-teacher-portal
 
+// +heroku goVersion go1.17
 go 1.17
 
-require goji.io v2.0.2+incompatible
 
 require github.com/go-chi/chi/v5 v5.0.3
 

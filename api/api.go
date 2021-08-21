@@ -21,7 +21,11 @@ var hmacSampleSecret = "be curious, not judgemental"
 
 func Serve() {
 	var err error
-	dsn := "host=localhost user=local_access password=man_wearing_coat dbname=adam port=5433 sslmode=disable"
+	dsn := os.Getenv("dsn")
+	if dsn == "" {
+		dsn = "host=localhost user=local_access password=man_wearing_coat dbname=adam port=5433 sslmode=disable"
+	}
+
 	db, err = sqlx.Connect("postgres", dsn)
 	if err != nil {
 		log.Fatalf("Could not open database connection:\n%v\n===\n", err)
