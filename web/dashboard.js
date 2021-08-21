@@ -167,6 +167,29 @@ $(document).ready(function() {
         main.cardAlert({ type: "success", header: "Thank you", body: "Your feedback is appreciated", ttl: 5 })
     })
 
+    // Schedule dialog
+    $("nav").on('click', 'a#scheduleWorkshop', function(e) {
+        console.log("schedule")
+        var dialog = $("#scheduleWorkshopForm")
+
+        $("#datepicker").datepicker();
+
+
+        // Display the dialog
+        dialog.dialog()
+    })
+    $("#scheduleWorkshopForm").on('click', 'button.submitScheduleRequest', function(e) {
+        console.log("form close ")
+
+        var dialog = $("#scheduleWorkshopForm")
+        dialog.dialog("destroy")
+
+
+        $("#datepicker").datepicker("destroy");
+
+        main.cardAlert({ type: "success", header: "Thank you", body: "We will notify you when the workshop date is confirmed.", ttl: 5 })
+    })
+
 
 })
 
@@ -192,7 +215,7 @@ function initScheduleTable() {
             [10, 25, 50, "all"]
         ],
         order: [
-            [1, "asc"],
+            [2, "asc"],
         ],
         pageLength: 25,
         select: {
