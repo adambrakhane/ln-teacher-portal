@@ -1,9 +1,3 @@
-# Todo
-
-- Modal for survey
-- pic into documentation
-- test deploy
-
 # Teacher Portal
 
 ## What I built
@@ -87,4 +81,7 @@ curl "http://localhost:3000/classes/1/schedule" \
 
 
 ## If you want to build it yourself
-You'll need to run postgres locally before checking out, building, and running the application. You're welcome to do that
+You will need to run postgres locally before checking out, building, and running the application. Let me know if you would like instructions for that.
+
+# DB Schema
+![db schema](db-diagram.png)
