@@ -49,7 +49,7 @@ To give a sense of how I build APIs, I included 3 examples:
 Send this your ID (or email?) and password to be granted a token
 
 ```
-curl -X "POST" "http://localhost:3000/login" \
+curl -X "POST" "https://rocky-woodland-69870.herokuapp.com/login" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{
   "id": 135,
@@ -62,7 +62,7 @@ curl -X "POST" "http://localhost:3000/login" \
 Get the records for a specific teacher. This currently returns more data than it should to lower the complexity of the web app. Ideally this would return something as simple as 
 
 ```
-curl "http://localhost:3000/teachers/135" \
+curl "https://rocky-woodland-69870.herokuapp.com/teachers/135" \
      -H 'Authorization: (your token here)'
 ```
 
@@ -72,7 +72,7 @@ curl "http://localhost:3000/teachers/135" \
 Loads the schedule of all workshops for this class.
 
 ```
-curl "http://localhost:3000/classes/1/schedule" \
+curl "https://rocky-woodland-69870.herokuapp.com/classes/1/schedule" \
      -H 'Authorization: (your token here)'
 ```
 
